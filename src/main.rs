@@ -9,14 +9,14 @@ lazy_static! {
 fn create_env() -> Environment<'static> {
     let mut env = Environment::new();
     let mut source = Source::new();
-    source.load_from_path("templates", &["txt"]).unwrap();
+    source.load_from_path("templates", &["j2"]).unwrap();
     env.set_source(source);
     env
 }
 
 fn main() {
     let mut ctx = BTreeMap::new();
-    ctx.insert("name", "World");
-    let tmpl = ENV.get_template("hello.txt").unwrap();
+    ctx.insert("name", "Apache Config");
+    let tmpl = ENV.get_template("hello.j2").unwrap();
     println!("{}", tmpl.render(&ctx).unwrap());
 }
